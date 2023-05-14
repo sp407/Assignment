@@ -1,4 +1,4 @@
-variable "vm_subnet" {
+variable "vm_subnet_name" {
   type = string
 }
 
