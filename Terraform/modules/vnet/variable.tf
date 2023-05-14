@@ -3,7 +3,7 @@ variable "vnet_name" {
 }
 
 variable "vnet_address_space" {
-  type = string
+  type = list(string)
 }
 
 variable "location" {
