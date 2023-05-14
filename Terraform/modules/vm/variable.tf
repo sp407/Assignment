@@ -18,6 +18,10 @@ variable "admin_username" {
   type = string
 }
 
+variable "network_interface_ids" {
+  type = list(string)
+}
+
 variable "caching" {
   type = string
 }
