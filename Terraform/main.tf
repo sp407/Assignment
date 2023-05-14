@@ -10,7 +10,7 @@ data "azurerm_resource_group" "rg"{
 module "virtual_network"{
     source = "./modules/vnet"
     vnet_name                       = var.vnet_name
-    resource_group_name             = var.resource_group_name
+    resource_group_name             = data.azurerm_resource_group.rg.name
     location                        = var.location
     vnet_address_space              = var.vnet_address_space
 }
