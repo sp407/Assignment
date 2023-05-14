@@ -4,9 +4,7 @@ resource "azurerm_linux_virtual_machine" "VM_Redhat" {
   location            = var.location
   size                = var.size
   admin_username      = var.admin_username
-  network_interface_ids = [
-    azurerm_network_interface.myvmnic.id
-  ]
+  network_interface_ids = var.network_interface_ids
 
   admin_ssh_key {
     username   = var.admin_username
@@ -22,6 +20,6 @@ resource "azurerm_linux_virtual_machine" "VM_Redhat" {
     publisher = var.publisher
     offer     = var.offer
     sku       = var.sku
-    version   = var.version
+    version   = "latest"
   }
 }
