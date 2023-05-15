@@ -1,0 +1,38 @@
+---
+- name: Install all required packages
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: remove the php package
+    dnf:
+      name: php
+      state: absent
+  - name: install the php7.4 package
+    dnf:
+      name: '@php:7.4'
+      state: present
+  - name: Install latest version of below packages
+    dnf:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - httpd
+      - php
+      - php-mysqlnd
+      - php-gd
+      - php-xml
+      - mariadb-server
+      - mariadb
+      - php-mbstring
+      - php-json
+      - mod_ssl
+      - php-intl
+      - php-apcu
+  - name: Enable these installed services to start on boot up.
+    service:
+      name: "{{ item }}"
+      state: started
+    loop:
+      - httpd
+      - mariadb
