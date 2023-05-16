@@ -1,0 +1,20 @@
+---
+- name: Download MediaWiki files from wikimedia.org
+  hosts: all
+  tasks:
+   - name: Download MediaWiki
+     get_url:
+       url: https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.3.tar.gz
+       dest: /home/$USER 
+   - name: Unarchive the downloaded MediaWorks file
+     unarchive:
+       src: /home/$USER/mediawiki-1.39.3.tar.gz
+       dest: /var/www/
+       remote_src: yes
+   - name: Create symbolic link
+     file:
+       src: /home/$USER/mediawiki-1.39.3.tar.gz
+       dest: /var/www/mediawiki
+       state: link
+       
+     
