@@ -1,0 +1,11 @@
+---
+- name: Install all required packages
+  hosts: all
+  tasks:
+  - name: Restart these services to ensure changes take affect.
+    service:
+      name: "{{ item }}"
+      state: restarted
+    loop:
+      - httpd
+      - mariadb
